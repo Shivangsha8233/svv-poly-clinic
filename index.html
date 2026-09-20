@@ -146,18 +146,88 @@
             </nav>
 
             <div class="header-actions">
-                <a href="https://wa.me/919010481048?text=Hello%20SVV%20Poly%20Clinic,%20I%20would%20like%20to%20consult%20a%20doctor." target="_blank" class="btn btn-whatsapp btn-sm" aria-label="WhatsApp Us">
+                <a href="https://wa.me/919010481048?text=Hello%20SVV%20Poly%20Clinic,%20I%20would%20like%20to%20consult%20a%20doctor." target="_blank" class="btn btn-whatsapp btn-sm header-action-btn" aria-label="WhatsApp Us">
                     <i data-lucide="message-circle" style="width:16px; height:16px;"></i> WhatsApp
                 </a>
-                <a href="#appointmentSection" class="btn btn-primary btn-sm">
+                <a href="#appointmentSection" class="btn btn-primary btn-sm header-action-btn">
                     <i data-lucide="calendar" style="width:16px; height:16px;"></i> Book Appointment
                 </a>
-                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">
-                    <i data-lucide="menu" style="width:24px; height:24px;"></i>
+                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Navigation Menu">
+                    <i data-lucide="menu" style="width:26px; height:26px;"></i>
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Slide-In Navigation Drawer -->
+    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 36px; height: 36px;">
+                    <svg class="brand-svg" viewBox="0 0 128 128" fill="none" style="width:20px;height:20px;">
+                        <rect x="52" y="24" width="24" height="80" rx="12" fill="#0D9488" />
+                        <rect x="24" y="52" width="80" height="24" rx="12" fill="#0D9488" />
+                        <path d="M 36 64 L 50 64 L 56 46 L 64 82 L 72 50 L 78 64 L 92 64" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name" style="font-size: 1.15rem;">SVV <span>POLY CLINIC</span></span>
+                    <span class="brand-tagline" style="font-size: 0.7rem;">Madhapur • Diagnostics</span>
+                </div>
+            </div>
+            <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">
+                <i data-lucide="x" style="width:22px; height:22px;"></i>
+            </button>
+        </div>
+
+        <div class="drawer-body">
+            <div class="drawer-status-badge">
+                <span class="status-dot"></span> Open Today until 9:30 PM
+            </div>
+
+            <nav class="drawer-menu">
+                <a href="#specialitiesSection" class="drawer-link">
+                    <i data-lucide="heart-pulse"></i> Clinical Specialities
+                </a>
+                <a href="#labSection" class="drawer-link">
+                    <i data-lucide="flask-conical"></i> Serum Lab & Tests
+                </a>
+                <a href="#packagesSection" class="drawer-link">
+                    <i data-lucide="shield-check"></i> Health Checkup Packages
+                </a>
+                <a href="#doctorsSection" class="drawer-link">
+                    <i data-lucide="user-check"></i> Consult Doctors
+                </a>
+                <a href="#symptomSection" class="drawer-link">
+                    <i data-lucide="help-circle"></i> Symptom Matcher
+                </a>
+                <a href="#locationSection" class="drawer-link">
+                    <i data-lucide="map-pin"></i> Location & Timings
+                </a>
+                <a href="#faqsSection" class="drawer-link">
+                    <i data-lucide="message-square"></i> Patient FAQs
+                </a>
+            </nav>
+
+            <div class="drawer-actions">
+                <a href="#appointmentSection" class="btn btn-primary btn-lg drawer-btn" id="drawerBookBtn">
+                    <i data-lucide="calendar"></i> Book Appointment
+                </a>
+                <a href="https://wa.me/919010481048" target="_blank" class="btn btn-whatsapp btn-lg drawer-btn">
+                    <i data-lucide="message-circle"></i> WhatsApp Clinic
+                </a>
+                <a href="tel:+919010481048" class="btn btn-secondary drawer-btn">
+                    <i data-lucide="phone"></i> Call +91 90104 81048
+                </a>
+            </div>
+
+            <div class="drawer-footer-note">
+                <i data-lucide="map-pin" style="width:13px;height:13px;display:inline-block;vertical-align:middle;color:var(--primary);"></i>
+                VIP Hills, Arunodaya Colony, Madhapur
+            </div>
+        </div>
+    </div>
 
     <!-- ==========================================
          HERO SECTION

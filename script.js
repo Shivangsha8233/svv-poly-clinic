@@ -27,32 +27,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Navigation Toggle
+    // Mobile Slide-in Drawer Controls
     const mobileToggle = document.getElementById('mobileNavToggle');
-    const navMenu = document.getElementById('navMenu');
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', () => {
-            const isOpen = navMenu.style.display === 'flex';
-            navMenu.style.display = isOpen ? 'none' : 'flex';
-            if (!isOpen) {
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '74px';
-                navMenu.style.left = '0';
-                navMenu.style.right = '0';
-                navMenu.style.background = '#FFFFFF';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.padding = '1.5rem';
-                navMenu.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
-                navMenu.style.borderBottom = '1px solid #E2E8F0';
-            }
-        });
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
-        // Close menu on link click
-        navMenu.querySelectorAll('.nav-link').forEach(link => {
+    function openMobileDrawer() {
+        if (mobileDrawer && mobileDrawerOverlay) {
+            mobileDrawer.classList.add('active');
+            mobileDrawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeMobileDrawer() {
+        if (mobileDrawer && mobileDrawerOverlay) {
+            mobileDrawer.classList.remove('active');
+            mobileDrawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', openMobileDrawer);
+    }
+
+    if (drawerCloseBtn) {
+        drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+    }
+
+    if (mobileDrawerOverlay) {
+        mobileDrawerOverlay.addEventListener('click', closeMobileDrawer);
+    }
+
+    // Close drawer when any drawer link or action button is clicked
+    if (mobileDrawer) {
+        mobileDrawer.querySelectorAll('.drawer-link, .drawer-btn').forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navMenu.style.display = 'none';
-                }
+                closeMobileDrawer();
             });
         });
     }
