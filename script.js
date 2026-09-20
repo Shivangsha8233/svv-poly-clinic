@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Slide-in Drawer Controls
+    // Mobile Slide-in Drawer Controls (Phone screens only)
     const mobileToggle = document.getElementById('mobileNavToggle');
     const mobileDrawer = document.getElementById('mobileDrawer');
     const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
@@ -35,8 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openMobileDrawer() {
         if (mobileDrawer && mobileDrawerOverlay) {
-            mobileDrawer.classList.add('active');
-            mobileDrawerOverlay.classList.add('active');
+            mobileDrawer.style.display = 'flex';
+            mobileDrawerOverlay.style.display = 'block';
+            setTimeout(() => {
+                mobileDrawer.classList.add('active');
+                mobileDrawerOverlay.classList.add('active');
+            }, 15);
             document.body.style.overflow = 'hidden';
         }
     }
@@ -45,6 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mobileDrawer && mobileDrawerOverlay) {
             mobileDrawer.classList.remove('active');
             mobileDrawerOverlay.classList.remove('active');
+            setTimeout(() => {
+                mobileDrawer.style.display = '';
+                mobileDrawerOverlay.style.display = '';
+            }, 320);
             document.body.style.overflow = '';
         }
     }
@@ -68,6 +76,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeMobileDrawer();
             });
         });
+    }
+
+    // Smooth KPI Number Counter Animation
+    const statsSection = document.querySelector('.hero-stats');
+    let animatedStats = false;
+    if (statsSection && 'IntersectionObserver' in window) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animatedStats) {
+                animatedStats = true;
+                const statNums = document.querySelectorAll('.stat-num');
+                const targets = [18500, 12, 99.8, 15];
+                const suffixes = ['+', '+', '%', 'm'];
+
+                statNums.forEach((el, index) => {
+                    const target = targets[index];
+                    const suffix = suffixes[index];
+                    let current = 0;
+                    const duration = 1200;
+                    const stepTime = 20;
+                    const steps = duration / stepTime;
+                    const increment = target / steps;
+
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        const formatted = target % 1 === 0 ? Math.floor(current).toLocaleString() : current.toFixed(1);
+                        el.innerHTML = `${formatted}<span>${suffix}</span>`;
+                    }, stepTime);
+                });
+            }
+        }, { threshold: 0.3 });
+        statsObserver.observe(statsSection);
     }
 
     // ==========================================
